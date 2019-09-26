@@ -1,0 +1,52 @@
+import styled from "styled-components"
+
+export const Wrapper = styled.div`
+    width:5rem;
+    height:12rem;
+    position:absolute;
+    overflow:auto;
+    top:1.2rem;
+    left:2.2rem;
+    .demo{
+        width:100%;
+        .li{
+            width:100%;
+            .name{
+                width:100%;
+                height:.8rem;
+                font-size:.28rem;line-height:.8rem;
+            }
+            .content{
+                width:100%;
+                ul{
+                    width:100%;
+                    display:flex;
+                    flex-wrap:wrap;
+                    justify-content:flex-start;
+                    background:#fff;
+                    li{
+                        width:30%;height:1.6rem;
+                        margin-bottom:.2rem;
+                        margin-right:3%;
+                        div:nth-child(1){
+                            width:90%;
+                            height:80%;
+                            margin:0 auto;
+                            img{
+                                width:100%;height:100%;
+                            }
+                        }
+                        div:nth-child(2){
+                            width:100%;
+                            height:20%;
+                            text-align:center;
+                            white-space:nowrap;
+                            overflow:hidden;
+                            text-overflow:ellipsis;
+                        }
+                    }
+                }
+            }
+        }
+    }
+`
