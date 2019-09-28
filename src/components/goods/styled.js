@@ -1,10 +1,14 @@
 import styled from "styled-components"
+import close from "../../assets/images/common/x.png"
 
 export const Wrapper = styled.div`
     width:100%;
     height:100%;
     padding-top:1rem;
     background:#eee;
+    overflow:auto;
+    position: relative;
+    transition: transform 0.8s;
     .lunbo{
         width:100%;height:7.6rem;
         img{
@@ -89,7 +93,9 @@ export const Wrapper = styled.div`
         display:flex;
         font-size:.38rem;
         font-weight:900;
+        z-index:2;
         color:#fff;
+        
         .left{
             width:50%;height:100%;background:#FCB40A;
             display:flex;
@@ -104,12 +110,180 @@ export const Wrapper = styled.div`
         }
     }
     .menu{
-        width:100%;height:8rem;background:red;
+        width:100%;height:8rem;
         position: fixed;
-        bottom:2.2rem;left:0rem;
+        left:0rem;
+        bottom:2rem;
+        transform:translate(0,140%);
+        background:#eee; 
+        z-index:4;
+        transition: transform 0.8s;
     }
-
+    .menuUp{
+        width:100%;height:8rem;
+        position:fixed;
+        left:0rem;
+        bottom:2rem;
+        transform:translateY(25%);
+        background:#eee; 
+        z-index:4;
+        transition: transform 0.8s;
+    }
+    .mask{
+        position:fixed;
+        width:100%;height:100%;
+        background:rgba(0,0,0,.4);
+        top:0;bottom:0;
+        z-index:3;
+        touch-action: none;
+    }
     .kong{
         width:100%;height:1.2rem;
+    }
+    .menu_top{
+        width:100%;height:1.2rem;
+        border-bottom:1px solid #ccc;
+        display:flex;background:#fff;
+        padding:.1rem .2rem;
+        .img{
+            width:10%;height:100%;
+            img{
+                width:100%;height:100%;
+            }
+        }
+        .menu_top_right{
+            width:90%;height:100%;
+            padding-left:.2rem;
+            position:relative;
+            div:nth-child(2){
+                display:flex;
+                justify-content:space-between;
+                div:nth-child(1){
+                    color:red;
+                }
+            }
+        }
+    }
+    .menu_center{
+        width:100%;
+        background:#fff;
+        .color{
+            width:100%;height:1.5rem;
+            padding:0 .2rem;
+            div{
+                width:100%;height:.6rem;
+                font-size:.3rem;
+                line-height:.6rem;
+            }
+            ul{
+                display:flex;
+                width:100%;
+                li{
+                    width:1rem;
+                    height:.8rem;
+                    background:#EFEFEF;
+                    text-align:center;
+                    line-height:.8rem;
+                    margin-right:.2rem;
+                    border-radius:.1rem;
+                }
+            }
+        }
+        .size{
+            width:100%;height:1.5rem;
+            padding:0 .2rem;
+            div{
+                width:100%;height:.6rem;
+                font-size:.3rem;
+                line-height:.6rem;
+            }
+            ul{
+                display:flex;
+                width:100%;
+                li{
+                    width:1rem;
+                    height:.8rem;
+                    background:#EFEFEF;
+                    text-align:center;
+                    line-height:.8rem;
+                    margin-right:.2rem;
+                    border-radius:.1rem;
+                }
+            }
+        }
+    }
+    .menu_bottom{
+        width:100%;height:.8rem;
+        background:#fff;
+        padding:0 .2rem;font-size:.3rem;
+        display:flex;align-items:center;
+        justify-content:space-between;
+        div:nth-child(1){
+
+        }
+        .count{
+            width:2rem;height:80%;
+            border-radius:.1rem;border:1px solid #000;
+            display:flex;
+            input{
+                width:33%;
+                text-align:center;
+                font-size:.3rem;
+                outline:none;
+            }
+            div{
+                flex:1;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                font-size:.3rem;
+            }
+            div:nth-child(1){
+                border-right:1px solid #000;
+            }
+            div:nth-child(2){
+                border-right:1px solid #000;
+            }
+        }
+    }
+    .btn{
+        position:absolute;
+        bottom:0;
+        width:100%;
+        height:1rem;
+        background:#CF0005;
+        text-align:center;
+        color:#fff;
+        line-height:1rem;font-size:.3rem;
+    }
+    .closediv{
+        position:absolute;
+        width:.3rem;
+        height:1rem;
+        right:.1rem;
+        top:-90%;
+        .slot{
+            width:.1rem;height:.1rem;
+            position:absolute;
+            background:#000;
+            border-radius:50%;
+            bottom:0;left:calc(50% - .05rem);
+        }
+        .line{
+            position:absolute;
+            width:.03rem;
+            height:.8rem;
+            background:#fff;
+            bottom:.1rem;
+            left:calc(50% - .01rem);
+        }
+        .close{
+            background:url(${close}) no-repeat center;
+            width:.5rem;height:.5rem;
+            background-size:80% 80%;
+            position:absolute;
+            left:calc(50% - .25rem);
+            top:-.2rem;
+        }
     }
 `

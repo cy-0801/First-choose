@@ -7,10 +7,13 @@ class Header extends Component {
         let {title} = this.props
         return (
             <Wrapper>
-                <div className="icon"></div>
+                <div className="icon" onClick={this.handlerBack.bind(this)}></div>
                 <div className="title">{title}</div>
             </Wrapper>
         )
+    }
+    handlerBack(){
+        this.props.history.go(-1)
     }
 }
 Header.defaultProps = {

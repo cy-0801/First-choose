@@ -4,10 +4,11 @@ import back from "../../assets/images/home/goods/back.png"
 export const  Wrapper  = styled.div`
     width:100%;
     background:#eee;
+    height:100%;
     .header{
         width:100%;height:1rem;
         background:#fff;
-        position:fixed;
+        position:fixed;z-index:1;
         top:0px;left:0px;
         display:flex;
         align-items:center;
@@ -25,7 +26,7 @@ export const  Wrapper  = styled.div`
     }
     .left{
         width:2rem;background:#fff;
-        padding-top:1rem;
+        padding-top:1rem;        
         ul{
             width:100%;
             li{

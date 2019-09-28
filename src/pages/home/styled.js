@@ -44,12 +44,19 @@ export const Wrapper = styled.div`
             justify-content:center;
             align-items:center;font-size:.3rem;
             color:#fff;
+            a{
+                color:#fff;
+            }
         }
     }
     .lunbo{
         width:100%;
         height:3.6rem;
         margin-bottom:.1rem;
+        .swiper-container{
+            width:100%;height:100%;
+            overflow:hidden;
+        }
         img{
             width:100%;height:100%;
         }

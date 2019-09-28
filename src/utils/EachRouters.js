@@ -1,57 +1,3 @@
-// import React,{Fragment} from "react"
-// import {Switch,Route,Redirect} from "react-router-dom"
-// import Layout from "@layout"
-
-
-// export default (routes)=>{
-
-//     const eachRoutes = (route)=>{
-//         return <Route key={route.path} render={(props)=>(
-//             <Fragment>
-//                 <Route component = {route.component} />
-//                 <Redirect to={route.children[0].path} />
-//                 <Switch>
-//                     {
-//                         route.children.map((child)=>{
-//                             if(child.children){
-//                                 return eachRoutes(child)
-//                             }
-//                             if(!route.meta.requireAuth || sessionStorage.getItem("token") || route.path === "/login"){
-//                                 return <Layout {...child}>
-//                                            <Route path={child.path} key={child.key} component={child.component} {...props} />
-//                                        </Layout>
-//                             }else{
-//                                 return <Redirect to={{pathname:"/login",state:{from:child.path}}} />
-//                             }
-//                         })
-//                     }
-//                 </Switch>
-//             </Fragment>
-//         )}
-//         ></Route>
-//     }
-
-
-//     return routes.map((route) => {
-//         if(route.children){
-//             return eachRoutes(route)
-//         }else{
-//             return <Route path={route.path} key={route.key} render={(props)=>{
-//                 if(!route.meta.requireAuth || sessionStorage.getItem("token") || route.path === "/login"){
-//                     return <Layout {...route}>
-//                                 <route.component key={route.key} {...props} />
-//                            </Layout>
-//                 }else{
-//                     return <Redirect to={{pathname:"/login",state:{from:route.path}}} /> 
-//                 }
-//             }}></Route>
-//         }
-//     })
-// }
-
-
-
-
 import React, { Fragment } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Layout from "../layout"
@@ -64,7 +10,7 @@ export default (routes) => {
             render={(props) => (
                 <Fragment>
                     <Route component={route.component}/>
-                    <Redirect to={route.children[0].path} />
+                    {/* <Redirect to={route.children[0].path} /> */}
                     <Switch>
                         {
 

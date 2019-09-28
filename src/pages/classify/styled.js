@@ -1,4 +1,7 @@
 import styled from "styled-components"
+import close from "../../assets/images/common/search_x.png"
+import fangfa from "../../assets/images/common/search_icon.png"
+import bin from "../../assets/images/common/bin.png"
 
 export const Wrapper = styled.div`
     width:100%;height:100%;
@@ -9,7 +12,7 @@ export const Wrapper = styled.div`
         display:flex;
         .close{
             width:10%;height:100%;
-            background:red;
+            background:url(${close}) no-repeat 80% center;
         }
         .search{
             width:80%;height:100%;
@@ -29,7 +32,8 @@ export const Wrapper = styled.div`
                 border-top:1px solid #ccc;
                 border-right:1px solid #ccc;
                 border-bottom:1px solid #ccc;
-                background:red;
+                background:url(${fangfa}) no-repeat center;
+                background-size:55% 55%;
             }
         }
     }
@@ -42,7 +46,8 @@ export const Wrapper = styled.div`
             align-items:center;
             padding: 0 5%;
             div:nth-child(2){
-                background:red;
+                background:url(${bin}) no-repeat center;
+                background-size:55% 55%;
                 width:.8rem;height:.8rem;
             }
         }

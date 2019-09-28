@@ -5,7 +5,7 @@ export default class Login extends Component {
     render() {
         return (
             <Wrapper>
-                <Header title="登录"></Header>
+                <Header title="登录" {...this.props}></Header>
                 <input className="input0" type="text" placeholder="手机号"/>
                 <input className="input0" type="text" placeholder="密码"/>
                 <button>登录</button>

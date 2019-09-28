@@ -1,39 +1,52 @@
 import React, { Component } from 'react'
 import { Wrapper } from "./styled"
+import { SEARCH_LEFT } from "@api"
+import Bscroll from "@common/bscroll"
 
 class Search extends Component {
+    constructor() {
+        super()
+        this.state = {
+            list0: [],
+        }
+        this.handlerBack = this.handlerBack.bind(this)
+        this.handlerJumpClassify = this.handlerJumpClassify.bind(this)
+    }
     render() {
+        let { list0 } = this.state
         return (
             <Wrapper>
                 <div className="header">
-                    <div></div>
-                    <div>请输入宝贝名称</div>
+                    <div onClick={this.handlerBack}></div>
+                    <div onClick={this.handlerJumpClassify}>请输入宝贝名称</div>
                 </div>
-                <div className="left">
-                    <ul>
-                        <li>潮流女装</li>
-                        <li>品牌男装</li>
-                        <li>电脑办公</li>
-                        <li>图书</li>
-                        <li>啊啊啊</li>
-                        <li>ccc</li>
-                        <li>潮流女装</li>
-                        <li>品牌男装</li>
-                        <li>电脑办公</li>
-                        <li>图书</li>
-                        <li>啊啊啊</li>
-                        <li>ccc</li>
-                        <li>潮流女装</li>
-                        <li>品牌男装</li>
-                        <li>电脑办公</li>
-                        <li>图书</li>
-                        <li>啊啊啊</li>
-                        <li>ccc</li>
-                    </ul>
-                </div>
-                {this.props.children}
+                <Bscroll>
+                    <div className="left">
+                        <ul>
+                            {
+                                list0.map((item) => {
+                                    return <li key={item.cid}>{item.title}</li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                </Bscroll>
             </Wrapper>
         )
+    }
+    async componentDidMount() {
+        let data = await SEARCH_LEFT();
+        if (data.code === 200) {
+            this.setState({
+                list0: data.data
+            })
+        }
+    }
+    handlerBack() {
+        this.props.history.go(-1)
+    }
+    handlerJumpClassify() {
+        this.props.history.push('/classify')
     }
 }
 

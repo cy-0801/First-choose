@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Wrapper } from "./styled"
 import { HOME_SWIPER, HOME_NAV, HOME_GOODSLEVEL, HOME_FORYOU } from "@api"
-
-
+import { Link } from "react-router-dom"
+import Swiper from "swiper"
 export default class AAA extends Component {
     constructor() {
         super();
@@ -10,23 +10,33 @@ export default class AAA extends Component {
             swiperList: [],
             navList: [],
             goodsLevel: [],
-            foryou: []
+            foryou: [],
+
         }
+        this.handlerjumpToSearch = this.handlerjumpToSearch.bind(this)
+        this.handleJumpToClassify = this.handleJumpToClassify.bind(this)
     }
     render() {
         let { navList, goodsLevel, foryou } = this.state;
         return (
             <Wrapper>
                 <div className="header">
-                    <div className="left"></div>
+                    <div className="left" onClick={this.handlerjumpToSearch}></div>
                     <div className="center">
                         <div></div>
-                        <div>请输入喜欢的宝贝名称</div>
+                        <div onClick={this.handleJumpToClassify}>请输入喜欢的宝贝名称</div>
                     </div>
-                    <div>登录</div>
+                    <div><Link to="/login">登录</Link></div>
                 </div>
                 <div className="lunbo">
-                    <img src="//vueshop.glbuys.com/uploadfiles/1484285334.jpg" alt="" />
+                    <div className="swiper-container" ref="swiper">
+                        <div className="swiper-wrapper">
+                            <div className="swiper-slide"><img src="//vueshop.glbuys.com/uploadfiles/1484285334.jpg" alt="" /></div>
+                            <div className="swiper-slide"><img src="//vueshop.glbuys.com/uploadfiles/1484285302.jpg" alt="" /></div>
+                            <div className="swiper-slide"><img src="//vueshop.glbuys.com/uploadfiles/1524206455.jpg" alt="" /></div>
+                        </div>
+                        <div className="swiper-pagination" ref="pagination"></div>
+                    </div>
                 </div>
                 <div className="feilei">
                     <ul>
@@ -52,7 +62,7 @@ export default class AAA extends Component {
                                     <div className="first" key={index}>
                                         <div className="top-font">----{item.title}----</div>
                                         <div className="center">
-                                            <div className="left">
+                                            <div className="left" onClick={this.handlerToDetail.bind(this, item.items[0])}>
                                                 <div className="top">{item.items[0].title}</div>
                                                 <div className="left-center">
                                                     <div>精品打折</div>
@@ -62,8 +72,8 @@ export default class AAA extends Component {
                                                     <img src={item.items[0].image} alt="" />
                                                 </div>
                                             </div>
-                                            <div className="right">
-                                                <div className="top">
+                                            <div className="right" >
+                                                <div className="top" onClick={this.handlerToDetail.bind(this, item.items[1])}>
                                                     <div className="left">
                                                         <div>{item.items[1].title}</div>
                                                         <div>品质精挑</div>
@@ -72,7 +82,7 @@ export default class AAA extends Component {
                                                         <img src={item.items[1].image} alt="" />
                                                     </div>
                                                 </div>
-                                                <div className="bottom">
+                                                <div className="bottom" onClick={this.handlerToDetail.bind(this, item.items[2])}>
                                                     <div className="left">
                                                         <div>{item.items[2].title}</div>
                                                         <div>品质精挑四折起</div>
@@ -88,13 +98,13 @@ export default class AAA extends Component {
                                                 {
                                                     item.items.slice(3).map((item2, index2) => {
                                                         return (
-                                                            <li key={index2}>
+                                                            <li key={index2} onClick={this.handlerToDetail.bind(this, item2)}>
                                                                 <div>{item2.title}</div>
                                                                 <div>
                                                                     <img src={item2.image} alt="" />
                                                                 </div>
                                                                 <div className="price price1">￥{item2.price}</div>
-                                                                <del className="price">￥{item.price * 2}</del>
+                                                                <del className="price">￥{item2.price * 2}</del>
                                                             </li>
                                                         )
                                                     })
@@ -108,14 +118,14 @@ export default class AAA extends Component {
                                     <div className="second" key={index}>
                                         <div className="top-font">----{item.title}----</div>
                                         <div className="center">
-                                            <div className="left">
+                                            <div className="left" onClick={this.handlerToDetail.bind(this, item.items[0])}>
                                                 <div>{item.items[0].title}</div>
                                                 <div>火爆开售</div>
                                                 <div>
                                                     <img src={item.items[0].image} alt="" />
                                                 </div>
                                             </div>
-                                            <div className="right">
+                                            <div className="right" onClick={this.handlerToDetail.bind(this, item.items[1])}>
                                                 <div>{item.items[1].title}</div>
                                                 <div>火爆开售</div>
                                                 <div>
@@ -128,7 +138,7 @@ export default class AAA extends Component {
                                                 {
                                                     item.items.slice(2).map((item2, index2) => {
                                                         return (
-                                                            <li key={index2}>
+                                                            <li key={index2} onClick={this.handlerToDetail.bind(this, item2)}>
                                                                 <div>{item2.title}</div>
                                                                 <div>
                                                                     <img src={item2.image} alt="" />
@@ -152,7 +162,7 @@ export default class AAA extends Component {
                             {
                                 foryou.map((item, index) => {
                                     return (
-                                        <li key={index}>
+                                        <li key={index} onClick={this.handlerToDetail.bind(this, item)}>
                                             <div>
                                                 <img src={item.image} alt="" />
                                             </div>
@@ -194,6 +204,34 @@ export default class AAA extends Component {
                 foryou: foryou.data
             })
         }
+        new Swiper(this.refs.swiper, {
+            loop: true, // 循环模式选项
+            direction:'horizontal',
+            // autoplay: {
+            //     //可选选项，自动滑动
+            //     delay: 3000,
+            //     stopOnLastSlide: false,
+            //     disableOnInteraction: false
+            // },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            }
+        });
+
+
+
+
+
+    }
+    handlerjumpToSearch() {
+        this.props.history.push('/search')
+    }
+    handleJumpToClassify() {
+        this.props.history.push("/classify")
+    }
+    handlerToDetail(item) {
+        this.props.history.push('/detail/goods?gid=' + item.gid)
     }
 }
 
